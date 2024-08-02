@@ -13,7 +13,10 @@ const app = express();
 const PORT = process.env.PORT || 5000; // Default to 5000 if PORT is not set
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'https://cropwingelearn.vercel.app',
+  credentials: true
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Serve static files from 'uploads'
@@ -110,5 +113,5 @@ app.get('/courses', async (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
